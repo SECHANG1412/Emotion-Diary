@@ -9,6 +9,7 @@ const Viewer = ({ emotionId, content }) => {
 
   return (
     <div className="Viewer">
+
       <section className="img_section">
         <h4>오늘의 감정</h4>
         <div
@@ -18,12 +19,14 @@ const Viewer = ({ emotionId, content }) => {
           <div>{emotionItem.emotionName}</div>
         </div>
       </section>
+
       <section className="content_section">
         <h4>오늘의 일기</h4>
         <div className="content_wrapper">
           <p>{content}</p>
         </div>
       </section>
+      
     </div>
   );
 };
