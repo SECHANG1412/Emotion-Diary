@@ -21,17 +21,16 @@ const Edit = () => {
     if (!currentDiaryItem) {
       window.alert("존재하지 않는 일기입니다.");
       nav("/", { replace: true });
-      return;
     }
 
-    // 🔥 핵심 FIX — setState를 비동기로 지연시켜 StrictMode 경고 제거
-    Promise.resolve().then(() => {
-      setCurDiaryItem(currentDiaryItem);
-    });
-  }, [params.id]); // deps는 id만 — v7 문제 해결 방식 그대로 유지
+    setCurDiaryItem(currentDiaryItem);
+  }, [params.id]);
 
   const onClickDelete = () => {
-    if (window.confirm("일기를 정말 삭제할까요? 다시 복구되지 않아요!")) {
+    if (
+      window.confirm("일기를 정말 삭제할까요? 다시 복구되지 않아요!")
+    ) {
+      // 일기 삭제 로직
       onDelete(params.id);
       nav("/", { replace: true });
     }
@@ -53,9 +52,15 @@ const Edit = () => {
     <div>
       <Header
         title={"일기 수정하기"}
-        leftChild={<Button onClick={() => nav(-1)} text={"< 뒤로 가기"} />}
+        leftChild={
+          <Button onClick={() => nav(-1)} text={"< 뒤로 가기"} />
+        }
         rightChild={
-          <Button onClick={onClickDelete} text={"삭제하기"} type={"NEGATIVE"} />
+          <Button
+            onClick={onClickDelete}
+            text={"삭제하기"}
+            type={"NEGATIVE"}
+          />
         }
       />
       <Editor initData={curDiaryItem} onSubmit={onSubmit} />
