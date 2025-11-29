@@ -1,9 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { getEmotionImage } from '../util/get-emotion-image';
-import Button from './Button';
 import './DiaryItem.css';
+import Button from './Button';
+import type { DiaryEntry } from '../types/diary';
+import { getEmotionImage } from '../util/get-emotion-image';
 
-const DiaryItem = ({ id, emotionId, createdDate, content }) => {
+type DiaryItemProps = DiaryEntry;
+
+const DiaryItem = ({ id, emotionId, createdDate, content }: DiaryItemProps) => {
   const nav = useNavigate();
 
   const goDiaryPage = () => {
@@ -24,7 +27,7 @@ const DiaryItem = ({ id, emotionId, createdDate, content }) => {
         <div className="content">{content}</div>
       </div>
       <div className="button_section">
-        <Button onClick={goEditPage} text={'수정하기'} />
+        <Button onClick={goEditPage} text="수정하기" />
       </div>
     </div>
   );

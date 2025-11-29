@@ -1,7 +1,14 @@
-import React from 'react';
 import './Header.css';
 
-const Header = ({ title, leftChild, rightChild }) => {
+import type { ReactNode } from 'react';
+
+interface HeaderProps {
+  title: string;
+  leftChild?: ReactNode;
+  rightChild?: ReactNode;
+}
+
+const Header = ({ title, leftChild, rightChild }: HeaderProps) => {
   return (
     <header className="Header">
       <div className="header_left">{leftChild}</div>
